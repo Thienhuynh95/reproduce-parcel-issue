@@ -1,7 +1,7 @@
 {
   "name": "reproduce-parcel-issue",
   "version": "3.0.41",
-  "description": "Core UI components for Amino",
+  "description": "Code configuration to reproduce parcel issue",
   "engines": {
     "node": ">= 12"
   },
