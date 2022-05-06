@@ -1,6 +1,6 @@
 {
   "name": "reproduce-parcel-issue",
-  "version": "3.0.41",
+  "version": "1.0.0",
   "description": "Code configuration to reproduce parcel issue",
   "engines": {
     "node": ">= 12"
