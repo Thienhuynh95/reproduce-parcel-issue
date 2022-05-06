@@ -65,6 +65,28 @@ const componentsConfig: ConfigOptions = {
     },
   },
 };
+const buttonsConfig: ConfigOptions = {
+  detailedReport: { assetsPerBundle: 20 },
+  entries: 'src/components/Button/*.tsx',
+  targets: {
+    main: {
+      distDir: 'dist/components/Button',
+      context: 'browser',
+      engines: {
+        browsers: ['> 0.5%', 'last 2 versions', 'not dead'],
+        parcel: '>2.5',
+      },
+    },
+    module: {
+      distDir: 'dist/module/components/Button',
+      context: 'node',
+      engines: {
+        node: '>= 12',
+        parcel: '>2.5',
+      },
+    },
+  },
+};
 const iconConfig: ConfigOptions = {
   entries: 'src/icons/*.tsx',
   targets: {
@@ -86,7 +108,7 @@ const iconConfig: ConfigOptions = {
     },
   },
 };
-const configs: ConfigOptions[] = [componentsConfig, iconConfig];
+const configs: ConfigOptions[] = [componentsConfig, buttonsConfig, iconConfig];
 
 /* Set max listener based on the size of bundleConfig (1 config will add 4 event listeners) */
 process.stdout.setMaxListeners(configs.length * 8 + 1);
