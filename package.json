@@ -1,0 +1,97 @@
+{
+  "name": "reproduce-parcel-issue",
+  "version": "1.0.0",
+  "description": "Code configuration to reproduce parcel issue",
+  "engines": {
+    "node": ">= 12"
+  },
+  "browserslist": "> 0.5%, last 2 versions, not dead",
+  "author": "Thien Huynh",
+  "license": "MIT",
+  "private": false,
+  "devDependencies": {
+    "@parcel/core": "^2.5.0",
+    "@parcel/packager-ts": "2.5.0",
+    "@parcel/transformer-typescript-tsc": "^2.5.0",
+    "@parcel/transformer-typescript-types": "2.5.0",
+    "@parcel/types": "^2.5.0",
+    "@types/node": "^17.0.31",
+    "@types/react": "17.0.41",
+    "@types/react-dom": "17.0.13",
+    "@types/styled-components": "5.1.24",
+    "eslint": "7.32.0",
+    "eslint-config-airbnb": "18.2.0",
+    "eslint-config-airbnb-typescript": "^12.3.1",
+    "eslint-config-prettier": "^6.11.0",
+    "eslint-import-resolver-parcel2": "^1.0.1",
+    "eslint-plugin-import": "2.25.4",
+    "eslint-plugin-jest": "24.7.0",
+    "eslint-plugin-jsx-a11y": "6.5.1",
+    "eslint-plugin-prettier": "3.4.1",
+    "eslint-plugin-react": "7.29.4",
+    "eslint-plugin-react-hooks": "4.3.0",
+    "eslint-plugin-simple-import-sort": "^7.0.0",
+    "@typescript-eslint/eslint-plugin": "4.33.0",
+    "@typescript-eslint/parser": "4.33.0",
+    "dotenv": "^16.0.0",
+    "postcss": "8.4.12",
+    "postcss-preset-env": "6.7.1",
+    "parcel": "^2.5.0",
+    "prettier": "2.6.0",
+    "react": "17.0.2",
+    "react-dom": "17.0.2",
+    "react-hotkeys-hook": "3.4.4",
+    "react-is": "17.0.2",
+    "react-tooltip": "4.2.21",
+    "styled-components": "5.3.3",
+    "ttypescript": "^1.5.13",
+    "typescript": "4.6.2"
+  },
+  "resolutions": {
+    "@types/react": "17.0.41",
+    "@types/react-dom": "17.0.13"
+  },
+  "peerDependencies": {
+    "framer-motion": "^4.x",
+    "react": "^17.x",
+    "react-dom": "^17.x",
+    "react-hotkeys-hook": "^3.x",
+    "react-is": "^17.x",
+    "react-tooltip": "^4.x",
+    "styled-components": "^5.x"
+  },
+  "eslintConfig": {
+    "extends": "react-app"
+  },
+  "scripts": {
+    "prebuild": "rm -rf ./dist .parcel-cache && ttsc build.ts --outDir . --module es2022 --sourceMap true && mv build.js build.mjs",
+    "build": "node build.mjs && yarn build:dts",
+    "postbuild": "yarn build:prep:publish",
+    "prebuild:dts": "echo 'building dts'",
+    "build:dts": "ttsc --emitDeclarationOnly",
+    "posbuild:dts": "echo 'done build dts'",
+    "prebuild:prep:publish": "echo 'building for publishing'",
+    "build:prep:publish": "ttsc src/setupPackage.ts --sourceMap false && mv dist/setupPackage.js ./dist/setupPackage.mjs && node dist/setupPackage.mjs",
+    "postbuild:prep:publish": "echo 'done building for publishing'"
+  },
+  "exports": {
+    ".": {
+      "import": "./module/index.js",
+      "node": "./module/index.js",
+      "module": "./module/index.js",
+      "default": "./index.js"
+    },
+    "./components/*": {
+      "import": "./module/components/**/*.js",
+      "node": "./module/components/**/*.js",
+      "module": "./module/components/**/*.js",
+      "default": "./components/**/*.js"
+    },
+    "./icons/*": {
+      "import": "./module/icons/*.js",
+      "node": "./module/icons/*.js",
+      "module": "./module/icons/*.js",
+      "default": "./icons/*.js"
+    }
+  }
+}
