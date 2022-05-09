@@ -1,6 +1,6 @@
 import React from 'react';
 
-export const Icon1 = ({ size, color }: {size: number, color: 'string'}) => (
+export const Icon1 = ({ size, color }: { size: number; color: 'string' }) => (
   <svg height={size} width={size} color={color}>
     <path
       fillRule="evenodd"
